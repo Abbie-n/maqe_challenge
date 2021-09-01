@@ -1,5 +1,7 @@
+import 'package:dashboard_challenge/utils/widgets/row_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:dashboard_challenge/utils/utils.dart';
+import 'package:dashboard_challenge/utils/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,32 +15,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: 3.height,
-            ),
-            Positioned(
-              left: 42.width,
-              right: 0,
-              child: Icon(
-                Icons.home,
-                size: SizeConfig.height(3.5),
-                color: AppColors.blue,
-              ),
-            ),
-            Positioned(
-              child: Container(
-                height: .8.height,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.blue,
-                ),
-              ),
-            ),
-          ],
-        ),
+      backgroundColor: AppColors.bgColor,
+      body: Column(
+        children: [
+          HomeHeader(),
+          SizedBox(height: 2.5.height),
+          RowTexts(),
+          SizedBox(height: 2.height),
+          HomeTile(isSecondText: true),
+          SizedBox(height: 1.5.height),
+          HomeTile(),
+          SizedBox(height: 1.5.height),
+          HomeTile(),
+        ],
       ),
     );
   }

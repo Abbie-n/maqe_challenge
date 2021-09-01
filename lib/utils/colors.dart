@@ -9,5 +9,5 @@ class AppColors {
   static const lightGrey = Color(0xFFBABABA);
   static const black = Color(0xFF232323);
   static const white = Color(0xFFFFFFFF);
-  static const bgColor = Color(0xFFFBFBFB);
+  static const bgColor = Color(0xFFFAF9F6);
 }
