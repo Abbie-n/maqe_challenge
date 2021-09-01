@@ -21,6 +21,8 @@ dependencies:
   # API calls
   http: ^0.13.3
 
+  flutter_svg: ^0.22.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -35,6 +37,7 @@ flutter:
 
   assets:
    - assets/fonts/
+   - assets/icons/
   
   fonts:
     - family: IBMPlexSans
