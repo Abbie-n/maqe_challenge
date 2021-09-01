@@ -1,8 +1,6 @@
 name: dashboard_challenge
 description: A new Flutter project.
-
 publish_to: 'none' 
-
 version: 1.0.0+1
 
 environment:
@@ -20,9 +18,15 @@ dependencies:
   # Value equality
   equatable: ^2.0.3
 
+  # API calls
+  http: ^0.13.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  # Tests
+  bloc_test: ^8.1.0
 
  
 flutter:

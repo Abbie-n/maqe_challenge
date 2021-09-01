@@ -1,81 +1,83 @@
-class DataModel {
-  int? totalDay;
-  int? totalDayLeft;
-  int? totalDayUsed;
-  List<LeaveRequests>? leaveRequests;
+import 'package:equatable/equatable.dart';
 
-  DataModel(
-      {this.totalDay,
-      this.totalDayLeft,
-      this.totalDayUsed,
-      this.leaveRequests});
+class DataModel extends Equatable {
+  final totalDay;
+  final totalDayLeft;
+  final totalDayUsed;
+  final leaveRequests;
 
-  DataModel.fromJson(Map<String, dynamic> json) {
-    totalDay = json['total_day'];
-    totalDayLeft = json['total_day_left'];
-    totalDayUsed = json['total_day_used'];
-    if (json['leave_requests'] != null) {
-      leaveRequests = <LeaveRequests>[];
-      json['leave_requests'].forEach((v) {
-        leaveRequests!.add(LeaveRequests.fromJson(v));
+  const DataModel({
+    this.totalDay,
+    this.totalDayLeft,
+    this.totalDayUsed,
+    this.leaveRequests,
+  });
+
+  factory DataModel.fromJson(Map<dynamic, dynamic> json) {
+    return DataModel(
+        totalDay: json['total_day'],
+        totalDayLeft: json['total_day_left'],
+        totalDayUsed: json['total_day_used'],
+        leaveRequests: getLeaveRequests(json['leave_requests']));
+  }
+
+  static List<LeaveRequests>? getLeaveRequests(json) {
+    List<LeaveRequests>? _leaveRequests;
+    if (json != null) {
+      _leaveRequests = <LeaveRequests>[];
+      json.forEach((v) {
+        _leaveRequests!.add(LeaveRequests.fromJson(v));
       });
     }
+    return _leaveRequests;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['total_day'] = this.totalDay;
-    data['total_day_left'] = this.totalDayLeft;
-    data['total_day_used'] = this.totalDayUsed;
-    if (this.leaveRequests != null) {
-      data['leave_requests'] =
-          this.leaveRequests!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  @override
+  List<Object> get props =>
+      [totalDay, totalDayLeft, totalDayUsed, leaveRequests];
 }
 
-class LeaveRequests {
-  String? status;
-  List<RequestList>? requestList;
+class LeaveRequests extends Equatable {
+  final status;
+  final requestList;
 
-  LeaveRequests({this.status, this.requestList});
+  const LeaveRequests({this.status, this.requestList});
 
-  LeaveRequests.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    if (json['request_list'] != null) {
-      requestList = <RequestList>[];
-      json['request_list'].forEach((v) {
-        requestList!.add(RequestList.fromJson(v));
+  factory LeaveRequests.fromJson(Map<String, dynamic> json) {
+    return LeaveRequests(
+      status: json['status'],
+      requestList: getRequestList(json['request_list']),
+    );
+  }
+
+  static List<RequestList>? getRequestList(json) {
+    List<RequestList>? _requestList;
+    if (json != null) {
+      _requestList = <RequestList>[];
+      json.forEach((v) {
+        _requestList!.add(RequestList.fromJson(v));
       });
     }
+    return _requestList;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.requestList != null) {
-      data['request_list'] = this.requestList!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  @override
+  List<Object> get props => [status, requestList];
 }
 
-class RequestList {
-  String? date;
-  String? type;
+class RequestList extends Equatable {
+  final date;
+  final type;
 
-  RequestList({this.date, this.type});
+  const RequestList({this.date, this.type});
 
-  RequestList.fromJson(Map<String, dynamic> json) {
-    date = json['date'];
-    type = json['type'];
+  factory RequestList.fromJson(Map<String, dynamic> json) {
+    return RequestList(
+      date: json['date'],
+      type: json['type'],
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['date'] = this.date;
-    data['type'] = this.type;
-    return data;
-  }
+  @override
+  List<Object> get props => [date, type];
 }
