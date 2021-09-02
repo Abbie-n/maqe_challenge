@@ -27,50 +27,80 @@ class HomeHeader extends StatelessWidget {
           child: Material(
             elevation: 4,
             borderRadius: BorderRadius.circular(2.height),
-            child: Column(
-              children: [
-                Text(
-                  'My holiday',
-                  style: TextStyle(
-                    fontSize: 5.5.text,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.3,
+            child: Padding(
+              padding: EdgeInsets.all(1.height),
+              child: Column(
+                children: [
+                  Text(
+                    'My holiday',
+                    style: TextStyle(
+                      fontSize: 5.5.text,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.3,
+                    ),
                   ),
-                ),
-                SizedBox(height: 2.height),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    verticalTile(value: data?.totalDay, text: 'Total'),
-                    SizedBox(width: 5.width),
-                    Container(
-                      height: 6.height,
-                      child: VerticalDivider(
-                        thickness: .8,
+                  SizedBox(height: 2.height),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      verticalTile(value: data?.totalDay, text: 'Total'),
+                      SizedBox(width: 5.width),
+                      Container(
+                        height: 6.height,
+                        child: VerticalDivider(
+                          thickness: .8,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 5.width),
-                    verticalTile(
-                      value: data?.totalDay,
-                      text: 'Used',
-                      color: AppColors.blue,
-                    ),
-                    SizedBox(width: 5.width),
-                    Container(
-                      height: 6.height,
-                      child: VerticalDivider(
-                        thickness: .8,
+                      SizedBox(width: 5.width),
+                      verticalTile(
+                        value: data?.totalDay,
+                        text: 'Used',
+                        color: AppColors.blue,
                       ),
-                    ),
-                    SizedBox(width: 5.width),
-                    verticalTile(
-                      value: data?.totalDay,
-                      text: 'Left',
-                      color: AppColors.orange,
-                    ),
-                  ],
-                )
-              ],
+                      SizedBox(width: 5.width),
+                      Container(
+                        height: 6.height,
+                        child: VerticalDivider(
+                          thickness: .8,
+                        ),
+                      ),
+                      SizedBox(width: 5.width),
+                      verticalTile(
+                        value: data?.totalDay,
+                        text: 'Left',
+                        color: AppColors.orange,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 2.height),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 4.5.height,
+                        width: 33.width,
+                        child: buttonWithIcon(
+                          icon: Icon(Icons.add, color: AppColors.white),
+                          text: 'Leave',
+                          buttonColor: AppColors.blue,
+                          textColor: AppColors.white,
+                        ),
+                      ),
+                      SizedBox(width: 2.width),
+                      Container(
+                        height: 4.5.height,
+                        width: 33.width,
+                        child: buttonWithIcon(
+                          icon: Icon(Icons.shuffle, color: AppColors.blue),
+                          text: 'Switch',
+                          buttonColor: AppColors.white,
+                          textColor: AppColors.blue,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -106,6 +136,8 @@ class HomeHeader extends StatelessWidget {
   Widget buttonWithIcon({
     final text,
     final icon,
+    final buttonColor,
+    final textColor,
   }) {
     return Container(
       height: 5.5.height,
@@ -113,7 +145,10 @@ class HomeHeader extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 5.width,
       ),
-      decoration: BoxDecoration(color: Colors.black),
+      decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(1.height),
+          border: Border.all(color: AppColors.blue)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -124,8 +159,10 @@ class HomeHeader extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 3.7.text,
+                  fontSize: 4.5.text,
+                  letterSpacing: 0.3,
+                  fontWeight: FontWeight.w300,
+                  color: textColor,
                 ),
               ),
             ),

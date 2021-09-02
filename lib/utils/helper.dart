@@ -1,9 +1,18 @@
+import 'package:dashboard_challenge/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class Helper {
-  static Map<String, String> tileTitle = {
-    "switch_holiday": "Switch",
+  static Map<int, Icon> tileIcon = {
+    0: Icon(Icons.access_time_filled, color: AppColors.orange),
+    1: Icon(Icons.check_circle, color: AppColors.green),
+    2: Icon(Icons.cancel, color: AppColors.grey),
   };
+
+  // static Map<int, Icon> tileStatus = {
+  //   0: Icon(Icons.access_time_filled, color: AppColors.orange),
+  //   1: Icon(Icons.check_circle, color: AppColors.green),
+  //   2: Icon(Icons.cancel, color: AppColors.grey),
+  // };
 }
 
 class Categories {
@@ -14,11 +23,11 @@ class Categories {
       case 'remote':
         return Icon(Icons.desktop_mac_rounded);
       case 'sick_leave':
-        return Icon(Icons.email);
+        return Icon(Icons.local_hospital_outlined);
       case 'switch_holiday':
-        return Icon(Icons.access_alarm);
+        return Icon(Icons.shuffle);
       default:
-        return ('assets/images/categories/cash.png');
+        return Icon(Icons.desktop_mac_rounded);
     }
   }
 }

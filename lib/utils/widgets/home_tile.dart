@@ -1,4 +1,5 @@
 import 'package:dashboard_challenge/core/models/models.dart';
+import 'package:dashboard_challenge/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:dashboard_challenge/utils/utils.dart';
 import 'package:intl/intl.dart';
@@ -8,12 +9,14 @@ var df = DateFormat("dd MM yyyy");
 class HomeTile extends StatelessWidget {
   final title;
   final isSecondText;
+  final index;
   final LeaveRequests? requests;
 
   const HomeTile({
     Key? key,
     this.title,
     this.isSecondText = false,
+    this.index = 0,
     this.requests,
   }) : super(key: key);
 
@@ -28,7 +31,7 @@ class HomeTile extends StatelessWidget {
         color: AppColors.white,
       ),
       child: Opacity(
-        opacity: 0.5,
+        opacity: index == 2 ? 0.5 : 1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,13 +52,14 @@ class HomeTile extends StatelessWidget {
                 Row(
                   children: [
                     tileText(
-                      icons: Icons.desktop_mac_rounded,
+                      icon: Icon(Icons.desktop_mac_rounded),
                       // text: DateTime().,
                     ),
                     Spacer(),
                     tileText(
-                      icons: Icons.desktop_mac_rounded,
-                      text: '${requests?.status}',
+                      icon: Helper.tileIcon[index],
+                      text: '${requests?.status}'[0].toUpperCase() +
+                          '${requests?.status}'.substring(1),
                     )
                   ],
                 ),
@@ -64,8 +68,8 @@ class HomeTile extends StatelessWidget {
                 ),
                 isSecondText
                     ? tileText(
-                        icons: Icons.desktop_mac_rounded,
-                        text: 'Public holidays',
+                        icon: Icon(Icons.desktop_mac_rounded),
+                        // text: 'Public holidays',
                       )
                     : Container()
               ],
@@ -76,10 +80,10 @@ class HomeTile extends StatelessWidget {
     );
   }
 
-  Widget tileText({IconData? icons, String? text}) {
+  Widget tileText({Icon? icon, String? text}) {
     return Row(
       children: [
-        Icon(icons),
+        Container(child: icon),
         SizedBox(
           width: 2.width,
         ),
