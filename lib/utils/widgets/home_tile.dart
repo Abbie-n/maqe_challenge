@@ -1,10 +1,6 @@
 import 'package:dashboard_challenge/core/models/models.dart';
-import 'package:dashboard_challenge/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:dashboard_challenge/utils/utils.dart';
-import 'package:intl/intl.dart';
-
-var df = DateFormat("dd MM yyyy");
 
 class HomeTile extends StatelessWidget {
   final title;
@@ -46,34 +42,36 @@ class HomeTile extends StatelessWidget {
             SizedBox(
               height: 1.5.height,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    tileText(
-                      icon: Icon(Icons.desktop_mac_rounded),
-                      // text: DateTime().,
-                    ),
-                    Spacer(),
-                    tileText(
-                      icon: Helper.tileIcon[index],
-                      text: '${requests?.status}'[0].toUpperCase() +
-                          '${requests?.status}'.substring(1),
+            Column(children: [
+              Row(
+                children: [
+                  tileText(
+                    icon: Helper.typeIcon(requests?.requestList![0].type),
+                    text: Helper.df
+                        .format(DateTime.parse(requests?.requestList![0].date)),
+                  ),
+                  Spacer(),
+                  tileText(
+                    icon: Helper.tileIcon[index],
+                    text: '${requests?.status}'[0].toUpperCase() +
+                        '${requests?.status}'.substring(1),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 1.5.height,
+              ),
+              isSecondText
+                  ? tileText(
+                      icon: Helper.typeIcon(requests?.requestList![1].type),
+                      text: Helper.df2.format(
+                              DateTime.parse(requests?.requestList![2].date)) +
+                          '-' +
+                          Helper.df.format(
+                              DateTime.parse(requests?.requestList![1].date)),
                     )
-                  ],
-                ),
-                SizedBox(
-                  height: 1.5.height,
-                ),
-                isSecondText
-                    ? tileText(
-                        icon: Icon(Icons.desktop_mac_rounded),
-                        // text: 'Public holidays',
-                      )
-                    : Container()
-              ],
-            )
+                  : Container()
+            ])
           ],
         ),
       ),

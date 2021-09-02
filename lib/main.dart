@@ -1,16 +1,13 @@
-import 'package:dashboard_challenge/utils/utils.dart';
+import 'package:dashboard_challenge/simple_bloc_observer.dart';
 import 'package:dashboard_challenge/views/views.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Bloc.observer = SimpleBlocObserver();
+  runApp(App());
+}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dashboard Application',
-      theme: lightThemeData,
-      home: MainView(),
-    );
-  }
+class App extends MaterialApp {
+  App() : super(home: MainView(), debugShowCheckedModeBanner: false);
 }

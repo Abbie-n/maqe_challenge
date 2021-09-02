@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class DataModel extends Equatable {
-  final totalDay;
-  final totalDayLeft;
-  final totalDayUsed;
-  final leaveRequests;
+  final int? totalDay;
+  final int? totalDayLeft;
+  final int? totalDayUsed;
+  final List<LeaveRequests>? leaveRequests;
 
   const DataModel({
     this.totalDay,
@@ -33,13 +33,13 @@ class DataModel extends Equatable {
   }
 
   @override
-  List<Object> get props =>
+  List<Object?> get props =>
       [totalDay, totalDayLeft, totalDayUsed, leaveRequests];
 }
 
 class LeaveRequests extends Equatable {
   final status;
-  final requestList;
+  final List<RequestList>? requestList;
 
   const LeaveRequests({this.status, this.requestList});
 
@@ -62,7 +62,7 @@ class LeaveRequests extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, requestList];
+  List<Object?> get props => [status, requestList];
 }
 
 class RequestList extends Equatable {

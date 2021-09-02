@@ -1,4 +1,5 @@
 import 'package:dashboard_challenge/core/models/models.dart';
+import 'package:dashboard_challenge/utils/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:dashboard_challenge/utils/utils.dart';
 
@@ -13,22 +14,22 @@ class HomeHeader extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 35.height,
+          height: 38.height,
         ),
         Container(
-          height: 20.height,
+          height: 22.height,
           color: AppColors.lightBlue,
         ),
         Positioned(
           top: 12.height,
           left: 5.width,
-          height: 22.height,
+          height: 24.height,
           width: 90.width,
           child: Material(
             elevation: 4,
             borderRadius: BorderRadius.circular(2.height),
             child: Padding(
-              padding: EdgeInsets.all(1.height),
+              padding: EdgeInsets.all(3.height),
               child: Column(
                 children: [
                   Text(
@@ -53,7 +54,7 @@ class HomeHeader extends StatelessWidget {
                       ),
                       SizedBox(width: 5.width),
                       verticalTile(
-                        value: data?.totalDay,
+                        value: data?.totalDayUsed,
                         text: 'Used',
                         color: AppColors.blue,
                       ),
@@ -66,7 +67,7 @@ class HomeHeader extends StatelessWidget {
                       ),
                       SizedBox(width: 5.width),
                       verticalTile(
-                        value: data?.totalDay,
+                        value: data?.totalDayLeft,
                         text: 'Left',
                         color: AppColors.orange,
                       ),
@@ -79,7 +80,7 @@ class HomeHeader extends StatelessWidget {
                       Container(
                         height: 4.5.height,
                         width: 33.width,
-                        child: buttonWithIcon(
+                        child: ButtonWidget(
                           icon: Icon(Icons.add, color: AppColors.white),
                           text: 'Leave',
                           buttonColor: AppColors.blue,
@@ -90,7 +91,7 @@ class HomeHeader extends StatelessWidget {
                       Container(
                         height: 4.5.height,
                         width: 33.width,
-                        child: buttonWithIcon(
+                        child: ButtonWidget(
                           icon: Icon(Icons.shuffle, color: AppColors.blue),
                           text: 'Switch',
                           buttonColor: AppColors.white,
@@ -130,45 +131,6 @@ class HomeHeader extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-
-  Widget buttonWithIcon({
-    final text,
-    final icon,
-    final buttonColor,
-    final textColor,
-  }) {
-    return Container(
-      height: 5.5.height,
-      width: 100.width,
-      padding: EdgeInsets.symmetric(
-        horizontal: 5.width,
-      ),
-      decoration: BoxDecoration(
-          color: buttonColor,
-          borderRadius: BorderRadius.circular(1.height),
-          border: Border.all(color: AppColors.blue)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Align(alignment: Alignment.centerRight, child: icon),
-          Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 4.5.text,
-                  letterSpacing: 0.3,
-                  fontWeight: FontWeight.w300,
-                  color: textColor,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
